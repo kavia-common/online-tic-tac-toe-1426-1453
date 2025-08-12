@@ -1,0 +1,179 @@
+:root {
+  /* Provided palette */
+  --color-primary: #1976d2;
+  --color-secondary: #388e3c;
+  --color-accent: #fbc02d;
+
+  /* Light theme neutrals */
+  --bg: #ffffff;
+  --bg-muted: #f7f9fc;
+  --text: #1a1a1a;
+  --subtle-text: #5b6470;
+  --border: #e6e9ef;
+  --shadow: rgba(0, 0, 0, 0.06);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-muted);
+  color: var(--text);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.header {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  user-select: none;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: var(--color-primary);
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: var(--subtle-text);
+}
+
+.game-area {
+  width: 100%;
+  max-width: 520px;
+  margin: 64px auto 0 auto;
+  text-align: center;
+}
+
+.status {
+  margin: 12px auto 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: var(--text);
+}
+
+.status-winner {
+  color: var(--color-secondary);
+}
+
+.status-draw {
+  color: #8a8f98;
+}
+
+/* Board */
+.board {
+  width: min(90vw, 420px);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  background: transparent;
+}
+
+/* Cell */
+.cell {
+  appearance: none;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 6px 14px var(--shadow);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: clamp(2.2rem, 12vw, 3.4rem);
+  line-height: 1;
+  font-weight: 800;
+  transition: border-color 0.2s ease, transform 0.05s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  will-change: transform;
+}
+
+.cell:hover {
+  border-color: rgba(25, 118, 210, 0.35);
+  box-shadow: 0 10px 20px var(--shadow);
+  transform: translateY(-1px);
+}
+
+.cell:active {
+  transform: translateY(0);
+}
+
+.cell:focus {
+  outline: 3px solid rgba(251, 192, 45, 0.4);
+  outline-offset: 2px;
+}
+
+/* Mark coloring */
+.cell.x {
+  color: var(--color-primary);
+}
+.cell.o {
+  color: var(--color-secondary);
+}
+
+/* Winning highlight */
+.cell.winning {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(251, 192, 45, 0.25), 0 10px 20px var(--shadow);
+}
+
+/* Controls */
+.controls {
+  margin-top: 18px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.98rem;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: transform 0.06s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 6px 14px var(--shadow);
+}
+
+.btn:hover {
+  background: #1662ad;
+  box-shadow: 0 10px 20px var(--shadow);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Small devices */
+@media (max-width: 480px) {
+  .game-area {
+    margin-top: 56px;
+  }
+  .board {
+    gap: 8px;
+    width: min(92vw, 380px);
+  }
+}
+
+/* Larger devices */
+@media (min-width: 900px) {
+  .board {
+    width: 420px;
+  }
+}
